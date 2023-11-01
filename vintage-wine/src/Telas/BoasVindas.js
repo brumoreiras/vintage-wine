@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, View, Text, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function BoasVindas() {
@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
   },
   txtBoasVindas: {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: '600',
     textAlign: 'left',
     color: 'white',
   },
   aboutText: {
     fontSize: 24,
-    fontWeight: 900,
+    fontWeight: '900',
     color: 'white',
     textAlign: 'left',
   },
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   loginLink: {
     fontSize: 12,
-    fontWeight: 900,
+    fontWeight: '900',
     color: 'white',
     textDecorationLine: 'underline',
     textAlign: 'center'
