@@ -4,8 +4,7 @@ import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 
 export default function BannerProduto({ vinho }) {
     if (!vinho) {
-        // Trate o caso em que 'vinho' é indefinido ou nulo.
-        return null; // ou exiba uma mensagem de erro
+        return <Text>Algo deu errado!</Text>
     }
     return (
         <TouchableOpacity style={styles.containerProduto}>
@@ -15,10 +14,16 @@ export default function BannerProduto({ vinho }) {
             />
             <Text style={styles.txtTitulo}>{vinho.nome}</Text>
             <View>
-                <Text style={styles.txtSubtitulo}>{`${vinho.tipo} - ${vinho.nacionalidade}`}</Text>
-                {vinho.preco !== undefined ? (
-                    <Text style={styles.preco}>{`R$ ${vinho.preco}`}</Text>
-                ) : null}
+                <Text
+                    style={styles.txtSubtitulo}
+                >
+                    {`${vinho.tipo} - ${vinho.ficha_tecnica} `}
+                </Text>
+                {
+                    vinho.preco !== undefined ? (
+                        <Text style={styles.preco}>{`R$ ${vinho.preco.toFixed(2)}`}</Text>
+                    ) : null
+                }
             </View>
         </TouchableOpacity>
     );

@@ -1,16 +1,19 @@
 
 import { StyleSheet, SafeAreaView, StatusBar, Text, View, ScrollView } from 'react-native';
-import BoasVindas from './src/Telas/BoasVindas';
+import BoasVindas from './src/Screen/BoasVindas';
 import BannerPromo from './src/Component/BannerPromo';
 import ButtonCategoria from './src/Component/ButtonCategoria';
 import BannerProduto from './src/Component/BannerProduto';
 import ButtonCategoriaPais from './src/Component/ButtonCategoriaPais';
 import Menu from './src/Component/Menu';
-import Home from './src/Telas/Home';
+import Home from './src/Screen/Home';
+
 
 export default function App() {
   return (
-    <Home/>
+        <Home/>
+    
+
   );
 }
 /* const styles = StyleSheet.create({

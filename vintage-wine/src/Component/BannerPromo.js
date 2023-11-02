@@ -71,7 +71,7 @@ export default function BannerPromo() {
                                     <Text style={styles.lastItemTxtTitulo}>{item.titulo}</Text>
                                     <Text style={styles.lastItemTxtSubtitulo}>{item.subtitulo}</Text>
                                     <TouchableOpacity style={styles.buttoComprarPromo}>
-                                        <Text style={styles.buttoTxt}>Comprar</Text>
+                                        <Text style={styles.buttoTxt}>Saiba Mais</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     ContainerBanner: {
-        /* width: '100%', */
         height: 234,
         width: width * 0.90,
         marginHorizontal: 8,
@@ -222,7 +221,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 
-    /*-------*/
+    /*--- ultimo componente ----*/
 
     lastItemTxtContainerBanner: {
         position: 'absolute',
@@ -247,7 +246,7 @@ const styles = StyleSheet.create({
         marginBottom: 8
     },
 
-    /*-------------------------*/
+    /*------- Texto do banner 2 e 3 --------------*/
     txtColor: {
         fontSize: 24,
         fontWeight: '400',
@@ -275,17 +274,4 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
 
-})
-
-/* function teste() {
-    return
-    < View style={{
-        width: width * 0.90 - 15,
-        marginHorizontal: 10,
-        borderRadius: 12,
-    }}>
- 
-    </View >
- 
-
-} */
+});
