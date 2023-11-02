@@ -2,22 +2,26 @@ import React from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 
 
-export default function BannerProduto() {
+export default function BannerProduto({ vinho }) {
+    if (!vinho) {
+        // Trate o caso em que 'vinho' é indefinido ou nulo.
+        return null; // ou exiba uma mensagem de erro
+    }
     return (
         <TouchableOpacity style={styles.containerProduto}>
             <Image
-                source={require('../../images/vinhos-brasil/cabernet_sauvignon.png')}
+                source={{ uri: vinho.imagem }}
                 style={styles.imgVinho}
             />
-            <Text style={styles.txtTitulo}>Cabernet Sauvignon</Text>
+            <Text style={styles.txtTitulo}>{vinho.nome}</Text>
             <View>
-                <Text style={styles.txtSubtitulo}>Vinho Fino Tinto Seco 750ml
-                    Rio Grande do Sul - Brasil</Text>
-                <Text style={styles.preco}>R$ 99,90</Text>
+                <Text style={styles.txtSubtitulo}>{`${vinho.tipo} - ${vinho.nacionalidade}`}</Text>
+                {vinho.preco !== undefined ? (
+                    <Text style={styles.preco}>{`R$ ${vinho.preco}`}</Text>
+                ) : null}
             </View>
-
         </TouchableOpacity>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -41,17 +45,17 @@ const styles = StyleSheet.create({
         color: '#FFAC0B',
         marginTop: 4
     },
-    txtSubtitulo:{
+    txtSubtitulo: {
         fontSize: 8,
         fontWeight: '300',
         color: '#000',
         textAlign: 'left',
         marginTop: 4
     },
-    preco:{
+    preco: {
         fontSize: 12,
-        fontWeight: '700',       
-        color:'#AA0120',
+        fontWeight: '700',
+        color: '#AA0120',
         textAlign: 'left',
         marginTop: 4
     }
