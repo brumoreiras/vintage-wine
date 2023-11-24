@@ -12,7 +12,7 @@ export default function DetalheProduto({ route }) {
     const nacionalidade = vinho.nacionalidade;
 
     const decremento = () => {
-        if (count > 0) {
+        if (count > 1) {
             setCount(count - 1);
             setValorAtualizado((vinho.preco * (count - 1)));
         }
