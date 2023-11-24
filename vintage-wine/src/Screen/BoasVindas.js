@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function BoasVindas() {
+
+export default function BoasVindas({ navigation }) {
 
   return (
     <View style={styles.container}>
@@ -13,8 +14,11 @@ export default function BoasVindas() {
       >
         <View style={styles.topo}>
           <Text style={styles.logo}>Vintage Wine</Text>
-          <TouchableOpacity style={styles.closeButton} >
-            <FontAwesome name="close" size={24} color="white" />
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => navigation.navigate('Home')}
+          >
+            <Ionicons name="close" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
 
@@ -27,14 +31,24 @@ export default function BoasVindas() {
           </View>
 
 
-          <TouchableOpacity style={styles.signUpButton}>
+          <TouchableOpacity
+            style={styles.signUpButton}
+            onPress={() => navigation.navigate('SingUp')}
+          >
             <Text style={styles.signUpText}>Cadastre-se</Text>
+          </TouchableOpacity >
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SingIn')}
+          >
+            <Text style={styles.loginLink} >Já possui uma conta? Faça o login</Text>
           </TouchableOpacity>
 
-          <Text style={styles.loginLink} >Já possui uma conta? Faça o login</Text>
         </View>
       </ImageBackground>
     </View>
+
+
   );
 }
 
@@ -52,20 +66,20 @@ const styles = StyleSheet.create({
   topo: {
     padding: 16,
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     top: 42,
-    right: 16,  
+    right: 16,
   },
-  logo:{
+  logo: {
     fontSize: 28,
     color: '#FFF',
     paddingHorizontal: 16
   },
   closeButton: {
-   /*  position: 'absolute',
-    top: 42,
-    right: 16,
-    zIndex: 2, */
+    /*  position: 'absolute',
+     top: 42,
+     right: 16,
+     zIndex: 2, */
   },
   viewBoasVindas: {
     width: '95%',

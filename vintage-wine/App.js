@@ -1,26 +1,50 @@
-
-import { StyleSheet, SafeAreaView, StatusBar, Text, View, ScrollView } from 'react-native';
+import NavigationMenu from './src/Component/NavegationMenu';
+import { NavigationContainer } from '@react-navigation/native';
+import StackWelcome from './src/Routes/StackWelcome';
 import BoasVindas from './src/Screen/BoasVindas';
-import BannerPromo from './src/Component/BannerPromo';
-import ButtonCategoria from './src/Component/ButtonCategoria';
-import BannerProduto from './src/Component/BannerProduto';
-import ButtonCategoriaPais from './src/Component/ButtonCategoriaPais';
-import Menu from './src/Component/Menu';
-import Home from './src/Screen/Home';
 
 
 export default function App() {
   return (
-        <Home/>
-    
+    <NavigationContainer>
+      <StackWelcome>
+        <BoasVindas />
+      </StackWelcome >
+    </NavigationContainer>
+
+
+
 
   );
 }
-/* const styles = StyleSheet.create({
+
+
+/*
+
+    <NavigationContainer>
+      <TabMenu />
+    </NavigationContainer>
+
+
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import Pesquisar from "./src/Screen/Pesquisar";
+
+export default function App() {
+  return (
+    <View style={StyleSheet.container}>
+      <Pesquisar />
+    </View>
+
+
+  );
+}
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16
+    padding: 42,
+    borderWidth: 2
   },
   txt: {
     fontSize: 16,
@@ -37,4 +61,4 @@ export default function App() {
     marginTop: 24,
     marginBottom: 16
   },
-}) */
+})  */

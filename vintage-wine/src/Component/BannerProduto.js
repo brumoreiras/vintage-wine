@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 
 
-export default function BannerProduto({ vinho }) {
+export default function BannerProduto({ vinho, navigation, nacionalidade }) {
     if (!vinho) {
         return <Text>Algo deu errado!</Text>
     }
     return (
-        <TouchableOpacity style={styles.containerProduto}>
+        <TouchableOpacity
+            style={styles.containerProduto}
+            onPress={() => navigation.navigate('DetalheProduto', { vinho })}
+        >
             <Image
                 source={{ uri: vinho.imagem }}
                 style={styles.imgVinho}
@@ -21,7 +24,7 @@ export default function BannerProduto({ vinho }) {
                 </Text>
                 {
                     vinho.preco !== undefined ? (
-                        <Text style={styles.preco}>{`R$ ${vinho.preco.toFixed(2)}`}</Text>
+                        <Text style={styles.preco}>{`R$ ${vinho.preco}`}</Text>
                     ) : null
                 }
             </View>
@@ -38,7 +41,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 8
+        padding: 8,
+        backgroundColor: '#FFF'
     },
     imgVinho: {
         width: 42,
