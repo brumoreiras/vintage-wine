@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Image, Text, TouchableOpacity, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 import { MaterialCommunityIcons, FontAwesome, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import Home from '../Screen/Home';
 
 const { width } = Dimensions.get('window')
 const data = [

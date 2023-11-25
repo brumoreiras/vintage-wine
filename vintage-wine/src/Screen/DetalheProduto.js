@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Dimensions, Image, Button, ScrollView } from "react-native";
 import { Feather } from '@expo/vector-icons';
+import ButtonStyle from '../Component/ButtonStyle';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 
-export default function DetalheProduto({ route }) {
+export default function DetalheProduto({ route, navigation }) {
     const { vinho } = route.params;
     const [count, setCount] = useState(1);
     const [valorAtualizado, setValorAtualizado] = useState(vinho.preco);
@@ -22,6 +24,17 @@ export default function DetalheProduto({ route }) {
         setCount(count + 1);
         setValorAtualizado((vinho.preco * (count + 1)));
     }
+
+    const adicionarAoCarrinho = () => {
+        const itemNoCarrinho = {
+            id: vinho.id,
+            nome: vinho.nome,
+            nacionalidade: vinho.nacionalidade,
+            quantidade: count,
+            precoTotal: valorAtualizado,
+        };
+        navigation.navigate('CarrinhoDeCompras', { itemNoCarrinho });
+    };
 
     console.log(valorAtualizado);
     if (!vinho) {
@@ -76,12 +89,7 @@ export default function DetalheProduto({ route }) {
                         onPress={decremento}
                     />
                 </View>
-                <View style={styles.botao}>
-                    <Button
-                        title="Adicionar"
-                        color='#FFF'
-                    />
-                </View>
+                <ButtonStyle onPress={adicionarAoCarrinho} />
             </View>
         </SafeAreaView>
 
@@ -160,8 +168,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         position: 'absolute',
         bottom: 0,
-        paddingHorizontal: '5%',
-        paddingVertical: '3%',
+        paddingHorizontal: 10,
+        paddingVertical: 8,
         borderColor: '#D9D9D9',
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
@@ -208,14 +216,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700'
     },
-    botao: {
-        width: 150,
-        fontSize: 12,
-        fontWeight: '800',
-        backgroundColor: '#FF6400',
-        paddingHorizontal: 12,
-        paddingHorizontal: 8,
-        borderRadius: 8,
-    }
+
 
 })

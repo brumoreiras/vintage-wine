@@ -13,7 +13,6 @@ export default function Pesquisar({ navigation }) {
     const nacionalidades = data.vinhos;
 
     const realizarPesquisa = () => {
-        // Realizar a pesquisa com base no termo 'search'
         const resultadosDaPesquisa = nacionalidades.flatMap((nacionalidade) =>
             nacionalidade.vinho.filter((vinho) =>
                 vinho.nome.toLowerCase().includes(search.toLowerCase()) ||

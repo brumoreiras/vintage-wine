@@ -8,6 +8,7 @@ import TabMenu from './TabMenu'
 import SingIn from '../Screen/SingIn';
 import SingUp from '../Screen/SingUp';
 import DetalheProduto from '../Screen/DetalheProduto';
+import CarrinhoDeCompras from '../Screen/CarrinhoDeCompras';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,11 +33,24 @@ export default function StackWelcome() {
                             size={24}
                             color="black"
                             onPress={() => {
-                                // incluir o componente carrinho
-                                console.log('Navegar para a tela do carrinho');
+                                navigation.navigate('CarrinhoDeCompras');
+
                             }}
                         />
                     ),
+                })}
+            />
+
+            <Stack.Screen
+                name='CarrinhoDeCompras'
+                component={CarrinhoDeCompras}
+                options={() => ({
+                    headerShown: true,
+                    headerTitle: 'Carrinho',
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        marginRight: 10,
+                    },
                 })}
             />
         </Stack.Navigator>
