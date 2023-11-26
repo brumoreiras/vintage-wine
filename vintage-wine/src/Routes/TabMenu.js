@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather, AntDesign } from '@expo/vector-icons';
+import { Feather, AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 
 import Home from '../Screen/Home';
 import Categorias from '../Screen/Categorias';
 import Pesquisar from '../Screen/Pesquisar';
 import Profile from '../Screen/Profile';
+import VinhoPorPais from '../Screen/VinhoPorPais';
 
 
 const Tab = createBottomTabNavigator();
@@ -23,21 +24,56 @@ export default function TabMenu() {
             <Tab.Screen
                 name="Vintage Wine"
                 component={Home}
-                options={{
+                options={({ navigation }) => ({
+                    headerShown: true,
+                    headerTitle: 'Vintage Wine',
+                    headerTitleStyle: {
+                        marginRight: 10,
+                    },
+                    headerRight: () => (
+                        <SimpleLineIcons
+                            name="bag"
+                            size={24}
+                            color="black"
+                            onPress={() => {
+                                navigation.navigate('CarrinhoDeCompras');
+
+                            }}
+                        />
+                    ),
+
                     tabBarIcon: ({ color, size }) => (
                         <AntDesign name='home' size={20} color={'#998F8F'} />
                     )
-                }}
+                })}
+
+
+
+
+
 
             />
             <Tab.Screen
                 name="Categorias"
                 component={Categorias}
                 options={{
-
+                    headerTitleStyle: {
+                        marginRight: 10,
+                    },
                     tabBarIcon: ({ color, size }) => (
                         <Feather name='list' size={20} color={'#998F8F'} />
-                    )
+                    ),
+                    headerRight: () => (
+                        <SimpleLineIcons
+                            name="bag"
+                            size={24}
+                            color="black"
+                            onPress={() => {
+                                navigation.navigate('CarrinhoDeCompras');
+
+                            }}
+                        />
+                    ),
                 }}
 
 

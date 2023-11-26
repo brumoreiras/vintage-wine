@@ -4,8 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function SingUp() {
   return (
     <View style={styles.container}>
-      <Text>Meu Componente React Native</Text>
-      <Text>Este é um exemplo de um componente React Native.</Text>
+      <Text>Página não construida</Text>
     </View>
   );
 }

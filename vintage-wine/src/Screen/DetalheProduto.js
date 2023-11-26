@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Dimensions, Image, Button, ScrollView } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import ButtonStyle from '../Component/ButtonStyle';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
 
 export default function DetalheProduto({ route, navigation }) {
+    
+
     const { vinho } = route.params;
     const [count, setCount] = useState(1);
     const [valorAtualizado, setValorAtualizado] = useState(vinho.preco);
@@ -25,16 +28,46 @@ export default function DetalheProduto({ route, navigation }) {
         setValorAtualizado((vinho.preco * (count + 1)));
     }
 
-    const adicionarAoCarrinho = () => {
+    
+    const adicionarAoCarrinho = async () => {
         const itemNoCarrinho = {
             id: vinho.id,
+            imagem: vinho.imagem,
             nome: vinho.nome,
             nacionalidade: vinho.nacionalidade,
             quantidade: count,
-            precoTotal: valorAtualizado,
+            preco: vinho.preco,
+            precoTotal: vinho.preco * count,
+
         };
-        navigation.navigate('CarrinhoDeCompras', { itemNoCarrinho });
+
+        try {
+            const carrinhoAtual = await AsyncStorage.getItem('carrinho');
+            const carrinho = carrinhoAtual ? JSON.parse(carrinhoAtual) : [];
+
+            const indexVinhoExistente = carrinho.findIndex(
+                (item) =>
+                    item.id === itemNoCarrinho.id &&
+                    item.nome === itemNoCarrinho.nome &&
+                    item.nacionalidade === itemNoCarrinho.nacionalidade
+            );
+
+            if (indexVinhoExistente !== -1) {
+                carrinho[indexVinhoExistente].quantidade += itemNoCarrinho.quantidade;
+                carrinho[indexVinhoExistente].precoTotal += itemNoCarrinho.precoTotal;
+            } else {
+                carrinho.push(itemNoCarrinho);
+            }
+
+            await AsyncStorage.setItem('carrinho', JSON.stringify(carrinho));
+            navigation.navigate('CarrinhoDeCompras', {
+                atualizarItensNoCarrinho: () => setItensNoCarrinho(carrinho)
+            });
+        } catch (error) {
+            console.error('Erro ao adicionar ao carrinho:', error);
+        }
     };
+
 
     console.log(valorAtualizado);
     if (!vinho) {
@@ -89,7 +122,7 @@ export default function DetalheProduto({ route, navigation }) {
                         onPress={decremento}
                     />
                 </View>
-                <ButtonStyle onPress={adicionarAoCarrinho} />
+                <ButtonStyle title={'Adiciona'} onPress={adicionarAoCarrinho} />
             </View>
         </SafeAreaView>
 

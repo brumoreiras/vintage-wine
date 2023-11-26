@@ -76,10 +76,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   closeButton: {
-    /*  position: 'absolute',
-     top: 42,
-     right: 16,
-     zIndex: 2, */
   },
   viewBoasVindas: {
     width: '95%',

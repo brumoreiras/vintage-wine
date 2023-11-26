@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Dimensions, TouchableOpacity, FlatList } from "react-native";
-import { Feather, Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import BannerProduto from "../Component/BannerProduto";
 import data from '../../arquivosJson/banco-de-informacao.json';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,7 +21,6 @@ export default function Pesquisar({ navigation }) {
             )
         );
 
-        // Atualiza o estado 'resultados' com os resultados da pesquisa
         setResultados(resultadosDaPesquisa);
     };
 
@@ -50,8 +49,17 @@ export default function Pesquisar({ navigation }) {
                             onPress={realizarPesquisa}
                         />
                     </TouchableOpacity>
+
                     <Ionicons name="ios-filter-outline" size={28} color="#998F8F" />
-                    <Feather name="shopping-bag" size={28} color="#998F8F" />
+                    <SimpleLineIcons
+                        name="bag"
+                        size={24}
+                        color="#998F8F"
+                        onPress={() => {
+                            navigation.navigate('CarrinhoDeCompras');
+
+                        }}
+                    />
 
                 </View>
 

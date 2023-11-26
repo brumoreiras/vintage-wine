@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 
 export default function ButtonStyle(props) {
-  const { onPress, title = 'Adicionar' } = props;
+  const { onPress, title} = props;
   return (
     <Pressable style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    /*  elevation: 3, */
 
     width: 150,
     fontWeight: '800',

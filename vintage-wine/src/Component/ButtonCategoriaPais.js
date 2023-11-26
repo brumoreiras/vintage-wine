@@ -31,7 +31,7 @@ const data = [
 ];
 
 
-export default function ButtonCategoriaPais() {
+export default function ButtonCategoriaPais({ navigation }) {
     return (
         <FlatList
             data={data}
@@ -44,7 +44,7 @@ export default function ButtonCategoriaPais() {
             decelerationRate={'fast'}
             renderItem={({ item }) => (
 
-                <TouchableOpacity style={styles.containerProduto}>
+                <TouchableOpacity style={styles.containerProduto} onPress={() => navigation.navigate('VinhoPorPais')}>
                     <Image
                         source={item.image}
                         style={styles.imgCategoria}
@@ -66,7 +66,7 @@ export default function ButtonCategoriaPais() {
 
 const styles = StyleSheet.create({
     containerProduto: {
-        width:  'auto',
+        width: 'auto',
         height: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         marginBottom: 16
     },
-    imgCategoria:{
-        width: width*0.3,
+    imgCategoria: {
+        width: width * 0.3,
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8
     },

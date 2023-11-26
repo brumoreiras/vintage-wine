@@ -6,7 +6,7 @@ import ButtonCategoria from "../Component/ButtonCategoria";
 const { width } = Dimensions.get('window');
 
 
-export default function Categorias() {
+export default function Categorias({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -16,7 +16,7 @@ export default function Categorias() {
                 </View>
                 <View style={styles.containerTiposDeCategorias}>
                     <Text style={styles.txtContainerTiposDeCategorias}>Vinhos</Text>
-                    <ButtonCategoria tela={'telaDeCategoria'} />
+                    <ButtonCategoria tela={'telaDeCategoria'} navigation={navigation} />
                 </View>
             </View>
         </SafeAreaView>

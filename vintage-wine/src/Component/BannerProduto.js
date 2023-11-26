@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, Text, TouchableOpacity, View } from 'react-native';
 
 
-export default function BannerProduto({ vinho, navigation, nacionalidade }) {
+export default function BannerProduto({ vinho, navigation }) {
     if (!vinho) {
         return <Text>Algo deu errado!</Text>
     }

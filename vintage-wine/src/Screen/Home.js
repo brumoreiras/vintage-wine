@@ -11,7 +11,7 @@ const { width } = Dimensions.get('window');
 export default function Home({ navigation }) {
     const nacionalidades = data.vinhos;
     let todosOsVinhos = [];
-    
+
     nacionalidades.forEach((nacionalidade) => {
         const vinhosNacionalidade = nacionalidade.vinho.map((vinho) => ({
             ...vinho,
@@ -19,8 +19,8 @@ export default function Home({ navigation }) {
         }));
 
         todosOsVinhos = [...todosOsVinhos, ...vinhosNacionalidade];
-        
-    });   
+
+    });
 
     const vinhosOrdenadosPorPreco = todosOsVinhos.sort((a, b) => a.preco - b.preco);
     const vinhosMaisBaratos = vinhosOrdenadosPorPreco.slice(0, 6);
@@ -32,7 +32,7 @@ export default function Home({ navigation }) {
             <ScrollView >
                 <BannerPromo />
                 <Text style={styles.txt}>Categorias</Text>
-                <ButtonCategoria tela={'telaHome'} />
+                <ButtonCategoria tela={'telaHome'} navigation={navigation} />
                 <Text style={styles.txt}>Em destaque</Text>
 
                 <FlatList
@@ -51,7 +51,7 @@ export default function Home({ navigation }) {
                 />
 
                 <Text style={styles.txt}>Escolha por país</Text>
-                <ButtonCategoriaPais />
+                <ButtonCategoriaPais navigation={navigation} />
             </ScrollView>
         </View>
     );
