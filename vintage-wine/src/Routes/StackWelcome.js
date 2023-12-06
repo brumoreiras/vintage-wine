@@ -14,6 +14,7 @@ import SelecionarEndereco from '../Screen/SelecionarEndereco';
 import SelecionarFormaDePagamento from '../Screen/SelecionarFormaDePagamento';
 import EscolhaCategoria from '../Screen/EscolhaCategoria';
 import VinhoPorPais from '../Screen/VinhoPorPais';
+import CompraFinalizada from '../Screen/CompraFinalizada';
 
 
 const Stack = createNativeStackNavigator();
@@ -26,7 +27,7 @@ export default function StackWelcome() {
             <Stack.Screen name="Home" component={TabMenu} />
             <Stack.Screen name='SingIn' component={SingIn} />
             <Stack.Screen name='SingUp' component={SingUp} />
-            
+
             <Stack.Screen
                 name='DetalheProduto'
                 component={DetalheProduto}
@@ -43,7 +44,6 @@ export default function StackWelcome() {
                             color="black"
                             onPress={() => {
                                 navigation.navigate('CarrinhoDeCompras');
-
                             }}
                         />
                     ),
@@ -56,18 +56,6 @@ export default function StackWelcome() {
                 options={() => ({
                     headerShown: true,
                     headerTitle: 'Carrinho',
-                    headerTitleAlign: 'center',
-                    headerTitleStyle: {
-                        marginRight: 10,
-                    },
-                })}
-            />
-            <Stack.Screen
-                name='SelecionarEnderecoEPagamento'
-                component={SelecionarEnderecoEPagamento}
-                options={() => ({
-                    headerShown: true,
-                    headerTitle: 'Entrega e Pagamento',
                     headerTitleAlign: 'center',
                     headerTitleStyle: {
                         marginRight: 10,
@@ -94,6 +82,19 @@ export default function StackWelcome() {
                 options={() => ({
                     headerShown: true,
                     headerTitle: 'Forma de Pagamento',
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        marginRight: 10,
+                    },
+                })}
+            />
+
+            <Stack.Screen
+                name='SelecionarEnderecoEPagamento'
+                component={SelecionarEnderecoEPagamento}
+                options={() => ({
+                    headerShown: true,
+                    headerTitle: 'Entrega e Pagamento',
                     headerTitleAlign: 'center',
                     headerTitleStyle: {
                         marginRight: 10,
@@ -146,6 +147,18 @@ export default function StackWelcome() {
                             }}
                         />
                     ),
+                })}
+            />
+
+            <Stack.Screen
+                name='CompraFinalizada'
+                component={CompraFinalizada}
+                options={() => ({
+                    headerShown: true,
+                    headerTitle: '',
+                    headerTitleStyle: {
+                        marginRight: 10,
+                    }
                 })}
             />
 

@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 
 export default function DetalheProduto({ route, navigation }) {
-    
+
 
     const { vinho } = route.params;
     const [count, setCount] = useState(1);
@@ -28,8 +28,8 @@ export default function DetalheProduto({ route, navigation }) {
         setValorAtualizado((vinho.preco * (count + 1)));
     }
 
-    
-    const adicionarAoCarrinho = async () => {
+
+    /* const adicionarAoCarrinho = async () => {
         const itemNoCarrinho = {
             id: vinho.id,
             imagem: vinho.imagem,
@@ -66,7 +66,48 @@ export default function DetalheProduto({ route, navigation }) {
         } catch (error) {
             console.error('Erro ao adicionar ao carrinho:', error);
         }
+    }; */
+
+    // ... Seu código existente
+
+    const adicionarAoCarrinho = async () => {
+        const itemNoCarrinho = {
+            id: vinho.id,
+            imagem: vinho.imagem,
+            nome: vinho.nome,
+            nacionalidade: vinho.nacionalidade,
+            quantidade: count,
+            preco: vinho.preco,
+            precoTotal: vinho.preco * count,
+        };
+
+        try {
+            const carrinhoAtual = await AsyncStorage.getItem('carrinho');
+            const carrinho = carrinhoAtual ? JSON.parse(carrinhoAtual) : [];
+
+            const indexVinhoExistente = carrinho.findIndex(
+                (item) =>
+                    item.id === itemNoCarrinho.id &&
+                    item.nome === itemNoCarrinho.nome &&
+                    item.nacionalidade === itemNoCarrinho.nacionalidade
+            );
+
+            if (indexVinhoExistente !== -1) {
+                carrinho[indexVinhoExistente].quantidade += itemNoCarrinho.quantidade;
+                carrinho[indexVinhoExistente].precoTotal += itemNoCarrinho.precoTotal;
+            } else {
+                carrinho.push(itemNoCarrinho);
+            }
+
+            await AsyncStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            // Atualize a variável de estado diretamente
+            navigation.navigate('CarrinhoDeCompras', { atualizarItensNoCarrinho: true });
+        } catch (error) {
+            console.error('Erro ao adicionar ao carrinho:', error);
+        }
     };
+
 
 
     console.log(valorAtualizado);

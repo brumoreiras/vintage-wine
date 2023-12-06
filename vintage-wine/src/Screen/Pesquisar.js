@@ -30,6 +30,8 @@ export default function Pesquisar({ navigation }) {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#FFF',
+            flexDirection: 'column',
+            marginTop: 30
         }}>
 
             <View style={styles.container}>
@@ -93,6 +95,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#FFF',
         marginTop: 16
     },

@@ -1,37 +1,72 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons, Entypo, Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
+import ButtonStyle from "../Component/ButtonStyle";
 
 export default function SelecionarEnderecoEPagamento({ navigation }) {
 
+    const calcularValorTotal = 0;
+
     return (
         <View style={StyleSheet.container}>
-            <View style={[styles.containerEndPag, { marginTop: 32 }]}>
-                <Entypo name="location" size={24} color='#565656' />
-                <View style={{ width: '60%' }}>
-                    <Text style={styles.txtEndPag}>Endereço de entrega</Text>
-                </View>
+            <View style={{height: '100%'}}>
+                <View style={[styles.containerEndPag, { marginTop: 32 }]}>
+                    <Entypo name="location" size={24} color='#565656' />
+                    <View style={{ width: '60%' }}>
+                        <Text style={styles.txtEndPag}>
+                            Endereço: Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, São Paulo - SP, 04696-000
 
-                <TouchableOpacity
+                        </Text>
+                    </View>
+
+                    {/* <TouchableOpacity
                     style={styles.containerAddPag}
                     onPress={() => navigation.navigate('SelecionarEndereco')}
                 >
                     <Text style={styles.txtAdd}>Adicioar</Text>
                     <Ionicons name="arrow-forward-outline" size={24} color='#AA0120' />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.containerEndPag}>
-                <MaterialCommunityIcons name="credit-card-plus-outline" size={24} color='#565656' />
-                <View style={{ width: '60%' }}>
-                    <Text style={styles.txtEndPag}>Forma de Pagamento</Text>
+                </TouchableOpacity> */}
+
+                    <TouchableOpacity
+                        style={styles.containerAddPag}
+                        onPress={() => navigation.navigate('SelecionarEndereco')}
+                    >
+                        <Text style={styles.txtAdd}>Editar</Text>
+                        <AntDesign name="edit" size={24} color='#AA0120' />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity
+
+                <View style={styles.containerEndPag}>
+                    <MaterialCommunityIcons name="credit-card-plus-outline" size={24} color='#565656' />
+                    <View style={{ width: '60%' }}>
+                        <Text style={styles.txtEndPag}>XXXX XXXX XXXX 1234 </Text>
+                    </View>
+
+                    {/* <TouchableOpacity
                     style={styles.containerAddPag}
                     onPress={() => navigation.navigate('SelecionarFormaDePagamento')}
                 >
                     <Text style={styles.txtAdd}>Adicionar</Text>
                     <Ionicons name="arrow-forward-outline" size={24} color='#AA0120' />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+
+                    <TouchableOpacity
+                        style={styles.containerAddPag}
+                        onPress={() => navigation.navigate('SelecionarEndereco')}
+                    >
+                        <Text style={styles.txtAdd}>Editar</Text>
+                        <AntDesign name="edit" size={24} color='#AA0120' />
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+
+            <View style={styles.containerFooter}>
+              {/*   <View style={styles.containerValor}>
+                    <Text style={styles.txtValor}>SubTotal</Text>
+                    <Text style={styles.preco}>{`R$ ${calcularValorTotal.toFixed(2)}`}</Text>
+                </View> */}
+                <ButtonStyle title={'Finalizar'} onPress={() => navigation.navigate('CompraFinalizada')} />
             </View>
         </View >
     )
@@ -41,8 +76,9 @@ export default function SelecionarEnderecoEPagamento({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: "center",
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderWidth: 2
 
     },
     containerEndPag: {
@@ -78,7 +114,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 'auto',
         backgroundColor: '#FFF',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         position: 'absolute',

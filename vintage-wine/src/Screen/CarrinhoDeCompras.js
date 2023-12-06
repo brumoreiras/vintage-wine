@@ -7,9 +7,7 @@ import ButtonStyle from '../Component/ButtonStyle';
 
 
 const { width, height } = Dimensions.get('window');
-
-export default function CarrinhoDeCompras({ atualizarItensNoCarrinho, navigation }) {
-
+export default CarrinhoDeCompras = ({ navigation }) => {
     const [itensNoCarrinho, setItensNoCarrinho] = useState([]);
 
     useEffect(() => {
@@ -29,10 +27,8 @@ export default function CarrinhoDeCompras({ atualizarItensNoCarrinho, navigation
 
     const adicionarAoCarrinho = async (itemNoCarrinho) => {
         try {
-
             const carrinhoSalvo = await AsyncStorage.getItem('carrinho');
             const carrinho = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
-
 
             const indexVinhoExistente = carrinho.findIndex(
                 (item) =>
@@ -47,42 +43,13 @@ export default function CarrinhoDeCompras({ atualizarItensNoCarrinho, navigation
             } else {
                 carrinho.push(itemNoCarrinho);
             }
+
             setItensNoCarrinho(carrinho);
             await AsyncStorage.setItem('carrinho', JSON.stringify(carrinho));
         } catch (error) {
             console.error('Erro ao adicionar ao carrinho:', error);
         }
     };
-
-
-    const decremento = (index) => {
-        const updatedItens = [...itensNoCarrinho];
-        const item = updatedItens[index];
-
-        if (item && item.quantidade > 1) {
-            item.quantidade -= 1;
-            item.precoTotal = item.preco * item.quantidade;
-            setItensNoCarrinho(updatedItens);
-        }
-    };
-
-    const incremento = (index, i) => {
-        console.log('meu index::: ', i)
-
-        const updatedItens = [...itensNoCarrinho];
-        const item = updatedItens[index];
-
-        console.log('atualizando itens:: ', updatedItens)
-
-        if (item) {
-            item.quantidade += 1;
-            item.precoTotal = item.preco * item.quantidade;
-            setItensNoCarrinho(updatedItens);
-        }
-
-        console.log(typeof item.preco)
-    };
-
 
     const removerItemDoCarrinho = async (index) => {
         try {
@@ -96,17 +63,31 @@ export default function CarrinhoDeCompras({ atualizarItensNoCarrinho, navigation
         }
     };
 
-    const calcularValorTotal = () => {
-        let valorTotal = 0;
+    const decremento = (index) => {
+        const updatedItens = [...itensNoCarrinho];
+        const item = updatedItens[index];
 
-        for (const item of itensNoCarrinho) {
-            valorTotal += item.precoTotal;
+        if (item && item.quantidade > 1) {
+            item.quantidade -= 1;
+            item.precoTotal = item.preco * item.quantidade;
+            setItensNoCarrinho(updatedItens);
         }
-
-        return valorTotal;
     };
 
-    console.log('itens do carrinho:::: ', itensNoCarrinho);
+    const incremento = (index) => {
+        const updatedItens = [...itensNoCarrinho];
+        const item = updatedItens[index];
+
+        if (item) {
+            item.quantidade += 1;
+            item.precoTotal = item.preco * item.quantidade;
+            setItensNoCarrinho(updatedItens);
+        }
+    };
+
+    const calcularValorTotal = () => {
+        return itensNoCarrinho.reduce((total, item) => total + item.precoTotal, 0);
+    };
 
     return (
         <View style={styles.container}>

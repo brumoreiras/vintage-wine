@@ -81,6 +81,7 @@ export default function TabMenu() {
             <Tab.Screen
                 name="Pesquisar"
                 component={Pesquisar}
+                
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
